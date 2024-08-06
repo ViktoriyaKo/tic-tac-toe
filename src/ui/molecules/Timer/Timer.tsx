@@ -1,18 +1,6 @@
-import { theme } from '@/styles/variables';
 import { formatTime } from '@/utils';
 import { useEffect, useState } from 'react';
-import styled from 'styled-components';
-
-const Container = styled.div`
-  background-color: white;
-  padding: 12px 20px;
-  font-weight: 700;
-  font-size: 40px;
-  width: max-content;
-  border-radius: ${theme.borderRadius};
-  color: ${theme.primaryColor};
-  text-shadow: 2px 2px 2px rgb(0 0 0);
-`;
+import { Container } from './TimerStyle';
 
 const Timer = () => {
   const [seconds, setSeconds] = useState(0);
