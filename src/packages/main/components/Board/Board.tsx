@@ -1,16 +1,28 @@
-import Box from '../Box/Box';
+import { useDispatch, useSelector } from 'react-redux';
+import Cell from '../Сell/Сell';
 import { Grid } from './BoardStyle';
+import { getCells, getCurrentPlayer, makeMove } from '../../store/gameSlice';
 
-interface IProps {
-  size?: number;
-}
+const Board = () => {
+  const cells = useSelector(getCells);
+  const currentPlayer = useSelector(getCurrentPlayer);
+  const dispatch = useDispatch();
 
-const Board = (props: IProps) => {
-  const { size = 3 } = props;
+  const handleClick = (index: number) => {
+    dispatch(makeMove(index));
+  };
+
   return (
     <Grid>
-      {Array.from({ length: size ** 2 }, (_, index) => index).map((item) => {
-        return <Box value="X" key={item} />;
+      {cells.map((cell, index) => {
+        return (
+          <Cell
+            currentPlayer={currentPlayer}
+            value={cell}
+            key={index}
+            onClick={() => handleClick(index)}
+          />
+        );
       })}
     </Grid>
   );
