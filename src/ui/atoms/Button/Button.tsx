@@ -2,7 +2,7 @@ import { styles } from '@/styles/variables';
 import styled from 'styled-components';
 
 interface IButton {
-  align?: boolean;
+  align?: string;
 }
 
 const Button = styled.button<IButton>`
@@ -18,7 +18,7 @@ const Button = styled.button<IButton>`
   max-width: 200px;
   width: 100%;
   align-self: center;
-  margin-top: ${(props) => (props.align ? '20%' : 0)};
+  margin-top: ${(props) => (props.align ? props.align : 0)};
 
   &:hover {
     background-color: ${styles.primaryColor};

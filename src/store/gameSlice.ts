@@ -1,8 +1,7 @@
 import type { PayloadAction } from '@reduxjs/toolkit';
 import { createSlice } from '@reduxjs/toolkit';
 import { RootState } from './store';
-import { PlayerMark, Players, WinningCase } from '@/constants';
-import { GameStatus } from '@/constants/GameStatus';
+import { PlayerMark, Players, WinningCase, GameStatus } from '../constants';
 
 const createBoard = (size: number) => Array(size ** 2).fill(null);
 

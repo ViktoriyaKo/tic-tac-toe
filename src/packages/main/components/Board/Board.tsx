@@ -46,7 +46,7 @@ const Board = () => {
         );
       case GameStatus.IDLE:
         return (
-          <Button align={true} onClick={() => dispatch(startGame())}>
+          <Button align="20%" onClick={() => dispatch(startGame())}>
             Start Game
           </Button>
         );
