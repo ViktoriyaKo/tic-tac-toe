@@ -11,7 +11,11 @@ const Cell = (props: IProps) => {
   const showContent = value === null || value === currentPlayer;
 
   return (
-    <Container content={showContent ? currentPlayer : ''} onClick={onClick}>
+    <Container
+      data-testid="cell-container"
+      content={showContent ? currentPlayer : ''}
+      onClick={onClick}
+    >
       {value}
     </Container>
   );

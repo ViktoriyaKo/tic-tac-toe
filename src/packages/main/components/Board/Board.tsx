@@ -1,5 +1,4 @@
 import { useDispatch, useSelector } from 'react-redux';
-import Cell from '../Сell/Сell';
 import { Grid } from './BoardStyle';
 import {
   checkWinner,
@@ -10,10 +9,11 @@ import {
   makeMove,
   resetGame,
   startGame,
-} from '../../../../store/gameSlice';
+} from '@/store/gameSlice';
 import { Button } from '@/ui/atoms';
 import Result from '../Result/Result';
 import { GameStatus } from '@/constants/GameStatus';
+import Cell from '../Сell/Сell';
 
 const Board = () => {
   const cells = useSelector(getCells);
