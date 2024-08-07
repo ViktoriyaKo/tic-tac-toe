@@ -1,2 +1,2 @@
 export { default as MainPage } from './pages/Main';
-export { default as store } from './store/store';
+export { default as store } from '../../store/store';

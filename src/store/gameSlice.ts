@@ -2,25 +2,23 @@ import type { PayloadAction } from '@reduxjs/toolkit';
 import { createSlice } from '@reduxjs/toolkit';
 import { RootState } from './store';
 import { PlayerMark, Players, WinningCase } from '@/constants';
-import { DRAW } from '@/constants/Players';
+import { GameStatus } from '@/constants/GameStatus';
 
 const createBoard = (size: number) => Array(size ** 2).fill(null);
 
-interface GameState {
-  isRunning: boolean;
-  timer: number;
+export interface GameState {
   size: number;
   cells: (PlayerMark | null)[];
   currentPlayer: PlayerMark;
+  status: GameStatus;
   winner: string | null;
 }
 
 const initialState: GameState = {
-  isRunning: false,
-  timer: 0,
   size: 3,
   cells: createBoard(3),
   currentPlayer: PlayerMark.CROSS,
+  status: GameStatus.IDLE,
   winner: null,
 };
 
@@ -29,12 +27,16 @@ export const Slice = createSlice({
   initialState,
   reducers: {
     startGame: (state) => {
-      state.isRunning = true;
+      state.cells = createBoard(state.size);
+      state.currentPlayer = PlayerMark.CROSS;
+      state.status = GameStatus.PLAYING;
+      state.winner = null;
     },
     makeMove: (state, action: PayloadAction<number>) => {
       const index = action.payload;
-      if (state.cells[index] || state.winner) return;
+      if (state.cells[index]) return;
       state.cells[index] = state.currentPlayer;
+      state.status = GameStatus.PLAYING;
       state.currentPlayer =
         state.currentPlayer === PlayerMark.CROSS
           ? PlayerMark.ZERO
@@ -43,8 +45,9 @@ export const Slice = createSlice({
     resetGame: (state) => {
       state.cells = initialState.cells;
       state.currentPlayer = initialState.currentPlayer;
+      //status PLAYING not IDLE specially:
+      state.status = GameStatus.PLAYING;
       state.winner = null;
-      state.isRunning = initialState.isRunning;
     },
     checkWinner: (state) => {
       for (let i = 0; i < WinningCase.length; i++) {
@@ -54,6 +57,7 @@ export const Slice = createSlice({
           state.cells[value1] === state.cells[value2] &&
           state.cells[value1] === state.cells[value3]
         ) {
+          state.status = GameStatus.WON;
           state.winner =
             state.cells[value1] === PlayerMark.CROSS
               ? Players[0].name
@@ -63,7 +67,7 @@ export const Slice = createSlice({
       }
       const isDraw = state.cells.every((cell) => cell !== null);
       if (isDraw) {
-        state.winner = DRAW;
+        state.status = GameStatus.DRAW;
         return;
       }
     },
@@ -74,5 +78,6 @@ export const { startGame, makeMove, checkWinner, resetGame } = Slice.actions;
 export const getCells = (store: RootState) => store.game.cells;
 export const getCurrentPlayer = (store: RootState) => store.game.currentPlayer;
 export const getWinner = (store: RootState) => store.game.winner;
+export const getStatusGame = (store: RootState) => store.game.status;
 
 export default Slice.reducer;

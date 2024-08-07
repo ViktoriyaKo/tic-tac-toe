@@ -5,7 +5,7 @@ export const Container = styled.div`
   display: flex;
   flex-wrap: wrap;
   gap: 40px;
-  justify-content: space-between;
+  justify-content: center;
   background: #ffffff73;
   backdrop-filter: blur(2px);
   padding: 12px;
@@ -23,9 +23,10 @@ export const Wrapper = styled.div`
   align-items: center;
 `;
 
-export const Icon = styled.img`
-  width: 50px;
-  height: 50px;
+export const Icon = styled.p`
+  font-size: 70px;
+  font-weight: 600;
+  color: ${styles.primaryColor};
 `;
 
 export const Caption = styled.p`

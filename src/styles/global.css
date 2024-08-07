@@ -1,7 +1,5 @@
 :root {
-  font-family: 'fantasy', sans-serif;
   line-height: 1.5;
-  font-weight: 400;
 }
 
 *,
@@ -12,6 +10,8 @@
   padding: 0;
   text-decoration: none;
   border-width: 0;
+  font-family: cursive;
+  font-weight: 400;
 }
 
 a {
@@ -28,5 +28,4 @@ h1,
 h2 {
   font-size: inherit;
   font-weight: inherit;
-  font-family: 'inherit';
 }

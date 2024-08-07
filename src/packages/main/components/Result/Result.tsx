@@ -1,14 +1,15 @@
-import { DRAW } from '@/constants/Players';
+import { GameStatus } from '@/constants/GameStatus';
 import { Container, Title } from './ResultStyle';
 
 interface IProps {
-  winner: string;
+  winner: string | null;
+  status: string;
 }
 
 const Result = (props: IProps) => {
-  const { winner } = props;
+  const { winner, status } = props;
   const title =
-    winner && winner === DRAW
+    status === GameStatus.DRAW
       ? `You have a draw! \n Try again🙏`
       : `Congratulations! \n ${winner} won 🏆`;
 

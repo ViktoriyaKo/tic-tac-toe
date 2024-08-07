@@ -1,5 +1,4 @@
-import { Timer } from '@/ui/molecules';
-import { Caption, Container, Icon, Wrapper } from './StatusStyle';
+import { Caption, Container, Wrapper, Icon } from './StatusStyle';
 
 interface IProps {
   players: { name: string; icon: string }[];
@@ -14,12 +13,11 @@ const Status = (props: IProps) => {
         const { name, icon } = player;
         return (
           <Wrapper key={name}>
-            <Icon src={icon} />
+            <Icon>{icon}</Icon>
             <Caption>{name}</Caption>
           </Wrapper>
         );
       })}
-      <Timer />
     </Container>
   );
 };
