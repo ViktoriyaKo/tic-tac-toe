@@ -1,1 +1,2 @@
-export { PlayerMark } from './PlayerMark';
+export { Players, PlayerMark } from './Players';
+export { WinningCase } from './WinningCase';
